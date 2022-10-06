@@ -1,13 +1,7 @@
-import jwt, { Secret } from 'jsonwebtoken';
-import dotenv from 'dotenv';
 import UserModel from '../models/user.model';
 import connection from '../models/connection';
 import { IToken, IUser } from '../interfaces/interfaces';
-
-dotenv.config();
-
-const generateToken = async (user: Omit<IUser, 'password'>) => jwt
-  .sign(user, process.env.JWT_SECRET as Secret);
+import generateToken from '../helpers/token';
 
 export default class UserService {
   userModel: UserModel;
