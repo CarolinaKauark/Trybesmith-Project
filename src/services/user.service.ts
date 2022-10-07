@@ -1,7 +1,7 @@
 import UserModel from '../models/user.model';
 import connection from '../models/connection';
 import { ILogin, IToken, IUser } from '../interfaces/interfaces';
-import generateToken from '../helpers/token';
+import { generateToken } from '../helpers/token';
 import ErrorGenerate from '../helpers/errorGenerate';
 import statusCodes from '../helpers/statusCode';
 
@@ -14,8 +14,8 @@ export default class UserService {
 
   async insertUser(user: IUser): Promise<IToken> {
     const { username, classe, level } = user;
-    await this.userModel.insertUser(user);
-    const token = generateToken({ username, classe, level });
+    const id = await this.userModel.insertUser(user);
+    const token = generateToken({ username, classe, level, id });
     return { token };
   }
 
@@ -27,9 +27,9 @@ export default class UserService {
       throw new ErrorGenerate('Username or password invalid', statusCodes.UNAUTHORIZED);
     }
 
-    const { username, classe, level } = user;
+    const { username, classe, level, id } = user;
     
-    const token: string = generateToken({ username, classe, level });
+    const token: string = generateToken({ username, classe, level, id });
     return { token };
   }
 }

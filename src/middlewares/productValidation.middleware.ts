@@ -14,7 +14,6 @@ const productValidation = (req: Request, res: Response, next: NextFunction) => {
         .includes('required') ? statusCodes.BAD_REQUEST : statusCodes.UNPROCESSABLE_ENTITY,
     );
   }
-  console.log(error);
   
   next();
 };

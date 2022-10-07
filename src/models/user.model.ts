@@ -9,10 +9,11 @@ export default class UserModel {
   }
     
   async insertUser(user: IUser) {
-    await this.connection.execute<ResultSetHeader>(
+    const [{ insertId }] = await this.connection.execute<ResultSetHeader>(
       'INSERT INTO Trybesmith.Users (username, classe, level, password) VALUES (?,?,?,?)',
       [user.username, user.classe, user.level, user.password],
     );
+    return insertId;
   }
 
   async getByNameAndPassword(userLogin: ILogin) {

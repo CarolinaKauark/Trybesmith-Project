@@ -13,4 +13,8 @@ export default class OrderService {
     const allOrders = await this.orderModel.getAllOrders();
     return allOrders;
   }
+
+  async insertOrders(payload: IOrder) {
+    await this.orderModel.insertOrders(payload);
+  }
 }
