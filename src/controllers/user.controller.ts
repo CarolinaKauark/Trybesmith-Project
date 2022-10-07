@@ -1,5 +1,4 @@
 import { RequestHandler } from 'express';
-import { nextTick } from 'process';
 import statusCodes from '../helpers/statusCode';
 import UserService from '../services/user.service';
 
