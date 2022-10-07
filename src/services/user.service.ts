@@ -15,7 +15,7 @@ export default class UserService {
   async insertUser(user: IUser): Promise<IToken> {
     const { username, classe, level } = user;
     await this.userModel.insertUser(user);
-    const token = await generateToken({ username, classe, level });
+    const token = generateToken({ username, classe, level });
     return { token };
   }
 
@@ -26,8 +26,10 @@ export default class UserService {
     if (!user) {      
       throw new ErrorGenerate('Username or password invalid', statusCodes.UNAUTHORIZED);
     }
+
+    const { username, classe, level } = user;
     
-    const token: string = generateToken(user as IUser);
+    const token: string = generateToken({ username, classe, level });
     return { token };
   }
 }
