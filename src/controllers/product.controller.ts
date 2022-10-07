@@ -1,4 +1,5 @@
-import { Request, Response } from 'express';
+import { RequestHandler } from 'express';
+import statusCodes from '../helpers/statusCode';
 import ProductService from '../services/product.service';
 
 export default class ProductController {
@@ -8,14 +9,14 @@ export default class ProductController {
     this.productService = new ProductService();
   }
 
-  insertProducts = async (req: Request, res: Response) => {
+  insertProducts: RequestHandler = async (req, res) => {
     const { body } = req;
     const newProduct = await this.productService.insertProducts(body);
-    return res.status(201).json(newProduct);
+    return res.status(statusCodes.CREATED).json(newProduct);
   };
 
-  getAllProducts = async (_req: Request, res: Response) => {
+  getAllProducts: RequestHandler = async (_req, res) => {
     const allProducts = await this.productService.getAllProducts();
-    return res.status(200).json(allProducts);
+    return res.status(statusCodes.OK).json(allProducts);
   };
 }

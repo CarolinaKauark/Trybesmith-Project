@@ -1,4 +1,5 @@
-import { Request, Response } from 'express';
+import { RequestHandler } from 'express';
+import statusCodes from '../helpers/statusCode';
 import UserService from '../services/user.service';
 
 export default class UserController {
@@ -8,9 +9,15 @@ export default class UserController {
     this.userService = new UserService();
   }
 
-  insertUser = async (req: Request, res: Response) => {
+  insertUser: RequestHandler = async (req, res) => {
     const { body } = req;
     const token = await this.userService.insertUser(body);
-    return res.status(201).json(token);
+    return res.status(statusCodes.CREATED).json(token);
+  };
+
+  getByNameAndPassword: RequestHandler = async (req, res) => {
+    const { body } = req;
+    const token = await this.userService.getByNameAndPassword(body);
+    return res.status(statusCodes.OK).json(token);
   };
 }

@@ -1,4 +1,5 @@
-import { Request, Response } from 'express';
+import { RequestHandler } from 'express';
+import statusCodes from '../helpers/statusCode';
 import OrderService from '../services/order.service';
 
 export default class OrderController {
@@ -8,8 +9,8 @@ export default class OrderController {
     this.orderService = new OrderService();
   }
 
-  getAllOrders = async (_req: Request, res: Response) => {
+  getAllOrders: RequestHandler = async (_req, res) => {
     const allOrders = await this.orderService.getAllOrders();
-    return res.status(200).json(allOrders);
+    return res.status(statusCodes.OK).json(allOrders);
   };
 }
