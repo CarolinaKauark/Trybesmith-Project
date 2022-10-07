@@ -11,7 +11,6 @@ const userLoginMid = (req: Request, res: Response, next: NextFunction) => {
     
     throw new ErrorGenerate(error.message, statusCodes.BAD_REQUEST);
   }
-  console.log(error);
   
   next();
 };
