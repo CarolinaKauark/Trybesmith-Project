@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import ErrorGenerate from '../helpers/errorGenerate';
-import schemaLogin from '../helpers/schemaLogin';
+import { schemaLogin } from '../helpers/schema';
 import statusCodes from '../helpers/statusCode';
 
 const userLoginMid = (req: Request, res: Response, next: NextFunction) => {

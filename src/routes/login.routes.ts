@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import UserController from '../controllers/user.controller';
 // import loginMid from '../middlewares/loginMid';
-import userLoginMid from '../middlewares/userLogin.middleware';
+import userLoginMid from '../middlewares/loginValidation.middleware';
 
 const loginRouter = Router();
 

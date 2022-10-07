@@ -23,9 +23,7 @@ export default class UserService {
     const user = await this.userModel.getByNameAndPassword(userLogin);
     console.log(user);
     
-    if (!user) {
-      console.log('aqui', user);
-      
+    if (!user) {      
       throw new ErrorGenerate('Username or password invalid', statusCodes.UNAUTHORIZED);
     }
     

@@ -18,7 +18,7 @@ export default class UserModel {
   async getByNameAndPassword(userLogin: ILogin) {
     const [[user]] = await this.connection.execute<RowDataPacket[]>(
       `SELECT * FROM Trybesmith.Users 
-      WHERE username = (?) AND password = (?)`,
+      WHERE username = ? AND password = ?`,
       [userLogin.username, userLogin.password],
     );
 
