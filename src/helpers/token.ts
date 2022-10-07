@@ -16,5 +16,3 @@ export const authenticate = (token: string): JwtPayload => {
   const decoded = jwt.verify(token, process.env.JWT_SECRET as Secret);
   return decoded as JwtPayload;
 };
-
-// export default generateToken;
